@@ -82,11 +82,10 @@
   ],
   "scripts": {
     "lint": "eslint app config lib test *.js",
-    "test": "npm run lint -- --fix && npm run test-local && npm run test-ts",
-    "test-ts": "ts-node test/egg-ts.test.ts",
+    "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
-    "ci": "npm run lint && npm run cov && npm run test-ts",
+    "ci": "npm run lint && npm run cov",
     "doc-server": "doctools server",
     "doc-build": "doctools build",
     "doc-deploy": "doctools deploy",
