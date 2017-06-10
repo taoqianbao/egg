@@ -130,16 +130,16 @@ describe('test/lib/cluster/master.test.js', () => {
     let app2;
     before(function* () {
       mm.consoleLevel('NONE');
-      app1 = utils.cluster('apps/cluster_mod_app', { coverage: true });
-      app2 = utils.cluster('apps/cluster_mod_app', { coverage: true });
+      app1 = utils.cluster('apps/cluster_mod_app', { coverage: false });
+      app2 = utils.cluster('apps/cluster_mod_app', { coverage: false });
       yield [
         app1.ready(),
         app2.ready(),
       ];
     });
-    after(() => {
-      app1.close();
-      app2.close();
+    after(function* () {
+      yield app1.close();
+      yield app2.close();
     });
 
     it('should online cluster mode startup success, app1', () => {
