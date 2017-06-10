@@ -138,33 +138,35 @@ describe('test/lib/cluster/master.test.js', () => {
       ];
     });
     after(function* () {
-      yield app1.close();
-      yield app2.close();
+      yield [
+        app1.close(),
+        app2.close(),
+      ];
     });
 
     it('should online cluster mode startup success, app1', () => {
-      return request(app1.callback())
+      return app1.httpRequest()
         .get('/')
         .expect('hi cluster')
         .expect(200);
     });
 
     it('should assign a free port by master, app1', () => {
-      return request(app1.callback())
+      return app1.httpRequest()
         .get('/clusterPort')
         .expect(/\d+/)
         .expect(200);
     });
 
     it('should online cluster mode startup success, app2', () => {
-      return request(app2.callback())
+      return app2.httpRequest()
         .get('/')
         .expect('hi cluster')
         .expect(200);
     });
 
     it('should assign a free port by master, app2', () => {
-      return request(app2.callback())
+      return app2.httpRequest()
         .get('/clusterPort')
         .expect(/\d+/)
         .expect(200);
