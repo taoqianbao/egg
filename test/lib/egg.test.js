@@ -152,7 +152,7 @@ describe('test/lib/egg.test.js', () => {
   describe('handle unhandledRejection', () => {
     let app;
     before(() => {
-      app = utils.cluster('apps/app-throw');
+      app = utils.cluster('apps/app-throw', { coverage: false });
       return app.ready();
     });
     after(() => app.close());
